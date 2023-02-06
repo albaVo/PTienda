@@ -1,0 +1,4 @@
+FROM nginx
+COPY ../app_next /usr/share/nginx/html
+
+RUN /etc/init.d/nginx start
