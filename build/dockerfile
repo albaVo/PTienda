@@ -1,6 +1,6 @@
 FROM nginx
 
 # copiando el directorio app_next al d-publicacion de ngnix
-COPY ../app_next /usr/share/nginx/html
+# COPY ../app_next /usr/share/nginx/html
 
 RUN /etc/init.d/nginx start

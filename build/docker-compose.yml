@@ -8,3 +8,5 @@ services:
       - ./.env
     ports:
       - ${PUERTO}:80
+    # volumes: 
+    #   - ../app_next:/usr/share/nginx/html
