@@ -1,10 +1,10 @@
-version: '3'
-services:
-  web:
-    build: 
-      context: ${DIR_DFILES}
-      dockerfile: ./dockerfile
-    env_file:
-      - ./.env
-    ports:
-      - ${PUERTO}:80
+# version: '3'
+# services:
+#   web:
+#     build: 
+#       context: ${DIR_DFILES}
+#       dockerfile: ./dockerfile
+#     env_file:
+#       - ./.env
+#     ports:
+#       - ${PUERTO}:80
