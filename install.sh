@@ -1,5 +1,5 @@
 
-# echo "Tareas por etapas del pipeline JenkinsFile..."
+# echo "Tareas (por etapas) del pipeline JenkinsFile..."
 
 # echo "Instalando la tienda App PC Componentes"
 # echo "Descargar respositorio de AppTienda"
