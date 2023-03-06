@@ -33,6 +33,6 @@ FROM nginx:1.19.0-alpine as deploy
 COPY --from=compile /app/dist/main.js /usr/share/nginx/html/index.js
 COPY --from=compile /app/dist/node_modules /usr/share/nginx/html/node_modules
 
-EXPOSE 80
+EXPOSE 81
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
