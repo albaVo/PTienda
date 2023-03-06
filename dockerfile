@@ -18,20 +18,20 @@ ENV DB_PASSWORD=${DB_PASSWORD}
 ENV NEST_PORT=${NEST_PORT}
 
 WORKDIR /app
-COPY ./api_nest/package.json .
-COPY ./api_nest/yarn.lock .
-RUN yarn install --force
+# COPY ./api_nest/package.json .
+# COPY ./api_nest/yarn.lock .
+# RUN yarn install --force
 
-COPY ./api_nest .
+# COPY ./api_nest .
 
-RUN yarn build
-RUN yarn config set network-timeout 60000
-RUN yarn install --production=true
+# RUN yarn build
+# RUN yarn config set network-timeout 60000
+# RUN yarn install --production=true
 
-FROM nginx:1.19.0-alpine as deploy
+# FROM nginx:1.19.0-alpine as deploy
 
-COPY --from=compile /app/dist/main.js /usr/share/nginx/html/index.js
-COPY --from=compile /app/dist/node_modules /usr/share/nginx/html/node_modules
+# COPY --from=compile /app/dist/main.js /usr/share/nginx/html/index.js
+# COPY --from=compile /app/dist/node_modules /usr/share/nginx/html/node_modules
 
 EXPOSE 81
 
