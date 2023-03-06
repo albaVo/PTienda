@@ -11,6 +11,6 @@
 
 echo "Desplegando la app de pTienda"
 
-docker-compose -f /build/docker-compose.yml build
+docker-compose -f /Job-pTienda/build/docker-compose.yml build
 docker-compose -f /build/docker-compose.yml up -d
 # docker exec -it apiNest /bin/bash
