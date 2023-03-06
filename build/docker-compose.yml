@@ -1,12 +1,38 @@
-version: '3'
+version: "3.8"
 services:
-  web:
-    build: 
-      context: ${DIR_DFILES}
-      dockerfile: ./dockerfile
-    env_file:
-      - ./.env
+  dbincidenciasnest:
+    container_name: bdTiendaNest
+    image: postgres:14.3
+    restart: always
     ports:
-      - ${PUERTO}:80
-    # volumes: 
-    #   - ../app_next:/usr/share/nginx/html
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  
+  weblibrerianest:
+    container_name: apiTiendaNest
+    image: apitienda
+    build:
+      context: ../
+      dockerfile: ./dockerfile1
+      args:
+        - PROYECTO=${PROYECTO}
+        - DB_HOST=${DB_HOST}
+        - DB_NAME=${DB_NAME}
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_PORT=${DB_PORT}
+        - NEST_PORT=${NEST_PORT}
+    env_file:
+       - ./.env
+    ports:
+      - ${NEST_PORT}:3000
+    volumes:
+      - ./web:/var/www/html
+      - ./logs:/var/logs
+    # depends_on:
+    #   - db  
