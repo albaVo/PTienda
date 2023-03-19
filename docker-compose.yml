@@ -17,7 +17,7 @@ services:
     container_name: apiTiendaNest
     image: apitienda
     build:
-      context: ./api_nest
+      context: ./
       dockerfile: ./dockerfile
       args:
         - PROYECTO=${PROYECTO}

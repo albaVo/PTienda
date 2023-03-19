@@ -18,10 +18,8 @@ ENV DB_PASSWORD=${DB_PASSWORD}
 ENV NEST_PORT=${NEST_PORT}
 
 WORKDIR /app
-# COPY  --chown=node:node ./api_nest/package.json .
-# COPY --chown=node:node ./api_nest/yarn.lock .
-COPY  --chown=node:node ./package.json .
-COPY --chown=node:node ./yarn.lock .
+COPY  --chown=node:node ./api_nest/package.json .
+COPY --chown=node:node ./api_nest/yarn.lock .
 RUN yarn install --force
 
 # COPY --chown=node:node ./api_nest .
