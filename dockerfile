@@ -18,21 +18,23 @@ ENV DB_PASSWORD=${DB_PASSWORD}
 ENV NEST_PORT=${NEST_PORT}
 
 WORKDIR /app
-# COPY ./api_nest/package.json .
-# COPY ./api_nest/yarn.lock .
-# RUN yarn install --force
+COPY  --chown=node:node ./api_nest/package.json .
+COPY --chown=node:node ./api_nest/yarn.lock .
+RUN yarn install --force
 
-# COPY ./api_nest .
+COPY --chown=node:node ./api_nest .
 
-# RUN yarn build
-# RUN yarn config set network-timeout 60000
-# RUN yarn install --production=true
+RUN yarn build
+ENV NODE_ENV production
+RUN yarn config set network-timeout 60000
+RUN yarn install --production=true && yarn cache clean --force
+# WORKDIR /app/dist
+# EXPOSE 3005
 
-# FROM nginx:1.19.0-alpine as deploy
-
-# COPY --from=compile /app/dist/main.js /usr/share/nginx/html/index.js
-# COPY --from=compile /app/dist/node_modules /usr/share/nginx/html/node_modules
-
-EXPOSE 81
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+FROM nginx:1.19.0-alpine as deploy
+COPY --from=install /app/dist/main.js /usr/share/nginx/html/index.js
+COPY --from=install /app/node_modules /usr/share/nginx/html/node_modules
+EXPOSE 80
+# #levantar nginx
+CMD [ "nginx", "-g", "daemon off;" ]
+# ENTRYPOINT ["node", "main.js"]
