@@ -36,5 +36,5 @@ services:
       # - ./logs:/var/logs
       - ./web:/app/web
       - ./logs:/app/logs
-    depends_on:
-      - dbtiendanest  
+    # depends_on:
+    #   - dbtiendanest  
