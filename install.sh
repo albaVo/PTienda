@@ -8,7 +8,7 @@ echo "Desplegando la app de pTienda"
 # docker-compose -f docker-compose.yml up -d
 # docker exec -it apiNest /bin/bash
 
-cd /var/lib/jenkins/workspace/Proyectos/Job-pTienda/ptienda/api_nest/
+cd /var/lib/jenkins/workspace/Proyectos/Job-pTienda/api_nest/
 
 export $(cat .env | xargs)
 
