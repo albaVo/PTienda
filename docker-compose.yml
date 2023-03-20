@@ -32,9 +32,7 @@ services:
     ports:
       - ${NEST_PORT}:81
     volumes:
-      # - ./web:/var/www/html
-      # - ./logs:/var/logs
-      - ./web:/app/web
-      - ./logs:/app/logs
+      - ./web:/var/www/html
+      - ./logs:/var/logs
     # depends_on:
     #   - dbtiendanest  
